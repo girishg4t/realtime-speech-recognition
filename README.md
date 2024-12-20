@@ -17,15 +17,21 @@ AGORA_APP_ID=
 AGORA_APP_CERT=
 ```
 
+#### 3. Run
+
+```bash
+python main.py
+```
+
 #### Setup html
 
-Enter the same app id above on the UI for APP Id field  
-Enter temp token from agora  
-Click on configure  
-Join the channel by clicking on Join Channel button  
-Start specking
+1. Enter the same app id above on the UI for APP Id field
+2. Enter temp token from agora
+3. Click on configure
+4. Join the channel by clicking on Join Channel button
+5. Start specking
 
-output:
+Output:
 
 ```bash
 Transcription: %s  Hi there.
