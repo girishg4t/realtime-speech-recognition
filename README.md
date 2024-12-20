@@ -1,4 +1,4 @@
-# realtime-speech-recognition
+# Realtime speech recognition
 
 ### Realtime speech recognition uses hugging face "openai/whisper-tiny" and "automatic-speech-recognition" transformers to listen to agora realtime audio stream every 4 sec using "agora_realtime_ai_api" to convert speech into text.
 
