@@ -2,7 +2,7 @@
 
 ### Realtime speech recognition uses hugging face "openai/whisper-tiny" and "automatic-speech-recognition" transformers to listen to agora realtime audio stream every 4 sec using "agora_realtime_ai_api" to convert speech into text.
 
-#### setup python
+#### Setup python
 
 ##### 1. Create `.env` file
 
@@ -17,10 +17,13 @@ AGORA_APP_ID=
 AGORA_APP_CERT=
 ```
 
-#### setup html
+#### Setup html
 
-Enter the same app id above on the UI for APP Id field
-Enter temp token from agora
+Enter the same app id above on the UI for APP Id field  
+Enter temp token from agora  
+Click on configure
+Join the call  
+Start specking
 
 output:
 
