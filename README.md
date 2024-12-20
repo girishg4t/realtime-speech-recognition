@@ -21,8 +21,8 @@ AGORA_APP_CERT=
 
 Enter the same app id above on the UI for APP Id field  
 Enter temp token from agora  
-Click on configure
-Join the call  
+Click on configure  
+Join the channel by clicking on Join Channel button  
 Start specking
 
 output:
