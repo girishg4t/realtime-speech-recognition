@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agora Web SDK Audio Sender</title>
+  <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.18.0.js"></script>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    .input-container {
+        margin-bottom: 10px;
+    }
+    input {
+        padding: 8px;
+        width: 300px;
+        margin-left: 10px;
+    }
+    button {
+        padding: 8px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+    <h1>Agora Configuration</h1>
+    <div class="input-container">
+        <label for="appId">App ID:</label>
+        <input type="text" id="appId" placeholder="Enter your App ID">
+    </div>
+    <div class="input-container">
+        <label for="token">Token:</label>
+        <input type="text" id="token" placeholder="Enter your Token">
+    </div>
+  <button id="submitBtn">Configure</button>
+  <button id="joinBtn">Join Channel</button>
+  <button id="leaveBtn">Leave Channel</button>
+
+  <script>
+    let appId = ""; // Replace with your Agora App ID
+    let token = ""; // Replace with the generated token
+    const channelName = "example_channel"; // Replace with your channel name
+    const userUid = Math.floor(Math.random() * 10000); // Generate a random UID
+    let client = ""
+
+    async function configure(params) {
+        appId = document.getElementById("appId").value;
+        token = document.getElementById("token").value;
+
+        if (!appId || !token) {
+            alert("Please enter both App ID and Token.");
+            return;
+        }
+        client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+        console.log("client configured");
+    }
+
+    async function joinChannel() {
+      try {
+        if (!appId || !token) {
+            alert("Please enter both App ID and Token.");
+            return;
+        }
+        // Join the Agora channel
+        await client.join(appId, channelName, token, userUid);
+        console.log("Joined channel:", channelName, userUid);
+
+        // Get microphone audio track
+        const localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+
+        // Publish the audio track
+        await client.publish([localAudioTrack]);
+        console.log("Audio published to channel");
+      } catch (error) {
+        console.error("Error joining channel:", error);
+      }
+    }
+
+    async function leaveChannel() {
+      await client.leave();
+      console.log("Left the channel");
+    }
+
+    // Button event listeners
+    document.getElementById("joinBtn").addEventListener("click", joinChannel);
+    document.getElementById("leaveBtn").addEventListener("click", leaveChannel);
+    document.getElementById("submitBtn").addEventListener("click", configure);
+  </script>
+</body>
+</html>
